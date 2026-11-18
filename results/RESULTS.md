@@ -110,12 +110,19 @@ in the CSV).
   181 bp; SPX β=3, 1Y: 80 bp vs 70 bp). **Verdict: not reproduced** for the
   3M-indistinguishability claim at γ=3, and **partially reproduced** for the
   longer-maturity improvement (present at 1Y, not monotone through 2Y). A
-  sensitivity check lowering the density cutoff used to flag "resolved" nodes
-  did not change the sign of the 3M degradation, so the specific mismatch
-  (a bias in the `M_3`-implied skewness estimate in the far wings, where
-  `M_0` is small and `mu_3` is a difference of comparable-magnitude moments)
-  is reported but not fully localised within the available checks; the cause
-  of the 3M/γ=3 degradation is not identified.
+  sensitivity check on the SPX β=3, T=3M slice, raising the density cutoff
+  used to flag "resolved" `M_0` nodes from the production value
+  (`DENSITY_CUTOFF_RELATIVE = 1e-6`) to `1e-4`, `1e-3` and `1e-2`, shows the
+  two- and three-moment maximum errors moving together and growing together
+  as the cutoff is raised (161.9/197.8 bp at `1e-6`, 212.1/211.7 bp at
+  `1e-4`, 949.8/949.4 bp at `1e-3`, 4912/4977 bp at `1e-2`): the three-moment
+  closure is never better than the two-moment one at this slice for any
+  tested cutoff, so the 3M/γ=3 degradation is not an artefact of the
+  resolved-node threshold. The specific mismatch (a bias in the
+  `M_3`-implied skewness estimate in the far wings, where `M_0` is small and
+  `mu_3` is a difference of comparable-magnitude moments) is therefore
+  reported but not fully localised within the available checks; the root
+  cause of the 3M/γ=3 degradation is not identified.
 * The paper's observation that β=-2 and β=3 share γ=3 but the inverse ratio
   is the harder case for the two-moment closure is **reproduced** at 3M and
   6M (two-moment max error for β=-2 exceeds β=3 by roughly 150–180 bp at
