@@ -27,6 +27,8 @@ STRIKE_K_RANGE = (-1.2, 1.2)  # LETF forward log-moneyness k = log(K/F_T^L) rang
 # Deterministic forward/discount inputs (paper Section 2, deterministic rates)
 # ---------------------------------------------------------------------------
 
+LETF_INITIAL_LEVEL = 100.0  # initial LETF price level used to build F_T^L = L_0 * exp(r T) in the synthetic experiments (not specified in the paper; a pure strike-grid scale with no effect on implied volatility)
+
 RISK_FREE_RATE = {"SPX": 0.045, "NKY": 0.010}  # flat continuously-compounded risk-free rate, per annum (not specified in the paper; representative USD/JPY short-rate levels used as a documented modelling input)
 DIVIDEND_YIELD = {"SPX": 0.018, "NKY": 0.020}  # flat continuous dividend yield of the underlying index, per annum (not specified in the paper; representative index dividend yields used as a documented modelling input)
 SPOT_LEVEL = {"SPX": 5500.0, "NKY": 39500.0}  # index spot level on the valuation date, index points (not specified in the paper; representative levels used as a documented modelling input)

@@ -44,6 +44,17 @@ class JointLawResult:
     index_name: str
 
 
+def x_domain(surface: LocalVolSurface, T: float, n_sigma: float, n_x: int) -> np.ndarray:
+    """Public alias of the x-grid construction, shared with the 1D moment solver."""
+    return _x_domain(surface, T, n_sigma, n_x)
+
+
+def diffusion_banded(a_x: np.ndarray, dx: float, dt: float) -> np.ndarray:
+    """Public alias of the banded backward-Euler diffusion operator, shared with
+    the 1D moment solver (same forward operator, paper Section 9.2)."""
+    return _build_diffusion_banded(a_x, dx, dt)
+
+
 def _x_domain(surface: LocalVolSurface, T: float, n_sigma: float, n_x: int) -> np.ndarray:
     """Truncate the x domain at n_sigma standard deviations of X_T, estimated
     from the ATMF local variance integrated over [0, T] (flat proxy, refined
