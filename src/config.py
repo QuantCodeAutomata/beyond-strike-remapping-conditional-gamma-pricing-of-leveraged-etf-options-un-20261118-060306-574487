@@ -116,11 +116,20 @@ MC_STEPS_PER_YEAR = 250  # same time discretisation as the PDE grids (paper Tabl
 # ---------------------------------------------------------------------------
 # Not specified in the paper (flagged uncertainty): the 1D grid for M_0..M_3
 # uses the same n_x and n_sigma as the Baseline 2D configuration, since the x
-# direction plays the same diffusive role in both solves.
+# direction plays the same diffusive role in both solves. A synthetic check
+# with a constant local-variance surface (whose exact conditional variance of
+# I_T is zero) showed that the discrete M_0..M_2 ratios carry an O(1/n_x)
+# numerical-diffusion floor in the conditional variance v(x), which in turn is
+# amplified in the third-moment ratio mu_3(x)/v(x)^{3/2} used by the shifted-
+# Gamma closure (experiment 3). Because the triangular moment system is a
+# sequence of cheap 1D tridiagonal solves (independent of the 2D grid size),
+# it is run at the paper's Baseline n_x/n_sigma in both the paper and the
+# executed configuration; only the 2D joint-law reference (experiment 1) and
+# the Monte Carlo path count are reduced for runtime (see results/RESULTS.md).
 MOMENT_GRID_PAPER = {"n_x": GRID_CONFIGS_PAPER["Baseline"]["n_x"], "steps_per_year": 250,
                       "n_sigma": GRID_CONFIGS_PAPER["Baseline"]["n_sigma"]}
-MOMENT_GRID_RUN = {"n_x": GRID_CONFIGS_RUN["Baseline"]["n_x"], "steps_per_year": 250,
-                    "n_sigma": GRID_CONFIGS_RUN["Baseline"]["n_sigma"]}
+MOMENT_GRID_RUN = {"n_x": GRID_CONFIGS_PAPER["Baseline"]["n_x"], "steps_per_year": 250,
+                    "n_sigma": GRID_CONFIGS_PAPER["Baseline"]["n_sigma"]}
 
 # ---------------------------------------------------------------------------
 # Experiment 4: empirical validation against listed TQQQ market quotes

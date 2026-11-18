@@ -1,0 +1,17 @@
+[exp4] 2026-03-20 1M (expiry 2026-04-17, T=0.077y): 35 TQQQ strikes, F_T_L=43.08 (parity strike 43.0)
+[exp4] 2026-03-20 3M (expiry 2026-06-18, T=0.247y): 29 TQQQ strikes, F_T_L=43.21 (parity strike 42.5)
+[exp4] 2026-03-20 6M: chain load failed: no quoted QQQ contracts found for expiry 2026-08-18
+[exp4] 2026-03-20 10M: chain load failed: no quoted QQQ contracts found for expiry 2026-08-18
+[exp4] 2026-06-22 1M: chain load failed: no quoted TQQQ contracts found for expiry 2026-08-07
+[exp4] 2026-06-22 3M (expiry 2026-09-18, T=0.241y): 24 TQQQ strikes, F_T_L=82.70 (parity strike 85.0)
+[exp4] 2026-06-22 6M: chain load failed: no quoted QQQ contracts found for expiry 2026-11-06
+[exp4] 2026-06-22 18M: chain load failed: no quoted QQQ contracts found for expiry 2026-11-06
+[exp4] 2026-09-25 1M (expiry 2026-10-23, T=0.077y): 44 TQQQ strikes, F_T_L=79.91 (parity strike 80.0)
+[exp4] 2026-09-25 3M: chain load failed: no quoted QQQ contracts found for expiry 2026-11-13
+[exp4] 2026-09-25 6M: chain load failed: no quoted QQQ contracts found for expiry 2026-11-13
+[exp4] 2026-09-25 16M: chain load failed: no quoted QQQ contracts found for expiry 2026-11-13
+market_date  tenor_months  n_strikes  joint_law_in_band_frac  gamma_in_band_frac  remap_in_band_frac  mean_joint_vs_gamma_abs_diff_bp  mean_bid_ask_spread_bp
+ 2026-03-20             1         35                0.000000            0.000000            0.000000                       212.035584              481.468434
+ 2026-03-20             3         29                0.000000            0.000000            0.000000                       396.652174              348.100896
+ 2026-06-22             3         24                0.208333            0.541667            0.541667                       290.733271              379.886724
+ 2026-09-25             1         44                0.045455            0.045455            0.022727                        45.763343              459.246268
