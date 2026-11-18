@@ -1,0 +1,45 @@
+[exp5] SPX beta=-2 3M: gamma=0.080s shifted=0.079s joint=0.573s speedup(gamma)=7.1x
+[exp5] SPX beta=-1 3M: gamma=0.095s shifted=0.084s joint=0.583s speedup(gamma)=6.1x
+[exp5] SPX beta=2 3M: gamma=0.078s shifted=0.080s joint=0.589s speedup(gamma)=7.5x
+[exp5] SPX beta=3 3M: gamma=0.076s shifted=0.074s joint=0.559s speedup(gamma)=7.4x
+[exp5] SPX beta=-2 6M: gamma=0.095s shifted=0.104s joint=1.063s speedup(gamma)=11.2x
+[exp5] SPX beta=-1 6M: gamma=0.104s shifted=0.107s joint=1.098s speedup(gamma)=10.5x
+[exp5] SPX beta=2 6M: gamma=0.102s shifted=0.104s joint=1.043s speedup(gamma)=10.3x
+[exp5] SPX beta=3 6M: gamma=0.086s shifted=0.090s joint=1.095s speedup(gamma)=12.8x
+[exp5] SPX beta=-2 1Y: gamma=0.125s shifted=0.133s joint=2.152s speedup(gamma)=17.2x
+[exp5] SPX beta=-1 1Y: gamma=0.136s shifted=0.144s joint=2.266s speedup(gamma)=16.7x
+[exp5] SPX beta=2 1Y: gamma=0.141s shifted=0.137s joint=2.125s speedup(gamma)=15.1x
+[exp5] SPX beta=3 1Y: gamma=0.118s shifted=0.122s joint=2.231s speedup(gamma)=18.8x
+[exp5] SPX beta=-2 2Y: gamma=0.199s shifted=0.214s joint=5.061s speedup(gamma)=25.5x
+[exp5] SPX beta=-1 2Y: gamma=0.217s shifted=0.224s joint=4.551s speedup(gamma)=21.0x
+[exp5] SPX beta=2 2Y: gamma=0.192s shifted=0.218s joint=4.216s speedup(gamma)=22.0x
+[exp5] SPX beta=3 2Y: gamma=0.187s shifted=0.200s joint=4.191s speedup(gamma)=22.4x
+[exp5] NKY beta=-2 3M: gamma=0.078s shifted=0.084s joint=0.616s speedup(gamma)=7.9x
+[exp5] NKY beta=-1 3M: gamma=0.094s shifted=0.085s joint=0.649s speedup(gamma)=6.9x
+[exp5] NKY beta=2 3M: gamma=0.090s shifted=0.090s joint=0.609s speedup(gamma)=6.8x
+[exp5] NKY beta=3 3M: gamma=0.110s shifted=0.087s joint=0.586s speedup(gamma)=5.3x
+[exp5] NKY beta=-2 6M: gamma=0.093s shifted=0.098s joint=1.195s speedup(gamma)=12.9x
+[exp5] NKY beta=-1 6M: gamma=0.099s shifted=0.104s joint=1.103s speedup(gamma)=11.1x
+[exp5] NKY beta=2 6M: gamma=0.090s shifted=0.096s joint=1.104s speedup(gamma)=12.3x
+[exp5] NKY beta=3 6M: gamma=0.096s shifted=0.105s joint=1.092s speedup(gamma)=11.4x
+[exp5] NKY beta=-2 1Y: gamma=0.134s shifted=0.146s joint=2.059s speedup(gamma)=15.3x
+[exp5] NKY beta=-1 1Y: gamma=0.134s shifted=0.139s joint=2.065s speedup(gamma)=15.4x
+[exp5] NKY beta=2 1Y: gamma=0.128s shifted=0.128s joint=2.108s speedup(gamma)=16.5x
+[exp5] NKY beta=3 1Y: gamma=0.114s shifted=0.125s joint=2.031s speedup(gamma)=17.8x
+[exp5] NKY beta=-2 2Y: gamma=0.191s shifted=0.209s joint=4.042s speedup(gamma)=21.2x
+[exp5] NKY beta=-1 2Y: gamma=0.204s shifted=0.239s joint=4.124s speedup(gamma)=20.2x
+[exp5] NKY beta=2 2Y: gamma=0.187s shifted=0.196s joint=3.997s speedup(gamma)=21.4x
+[exp5] NKY beta=3 2Y: gamma=0.181s shifted=0.197s joint=4.173s speedup(gamma)=23.0x
+      conditional_gamma_s            ... incremental_m3_cost_s          
+                     mean       min  ...                   min       max
+index                                ...                                
+NKY              0.126410  0.077603  ...             -0.022967  0.034587
+SPX              0.126954  0.075808  ...             -0.010599  0.026133
+
+[2 rows x 18 columns]
+      conditional_gamma_s  ...  incremental_m3_cost_s
+mean             0.126682  ...               0.005951
+min              0.075808  ...              -0.022967
+max              0.217110  ...               0.034587
+
+[3 rows x 6 columns]

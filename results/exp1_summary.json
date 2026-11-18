@@ -1,0 +1,18 @@
+{
+  "grid_configs_used":"reduced",
+  "n_x":{
+    "Coarse":400,
+    "Baseline":500,
+    "Mid":600,
+    "Fine":750
+  },
+  "n_i":{
+    "Coarse":200,
+    "Baseline":250,
+    "Mid":300,
+    "Fine":375
+  },
+  "mc_paths":200000,
+  "coverage_fraction_baseline_in_mc_band":0.4214939024,
+  "wall_clock_seconds":290.3547272682
+}

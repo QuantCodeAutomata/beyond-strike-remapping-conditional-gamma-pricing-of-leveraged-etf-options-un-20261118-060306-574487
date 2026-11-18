@@ -1,0 +1,65 @@
+[exp3] SPX beta=-2 3M: admissible=0.62 max2bp=274.90 max3bp=306.14
+[exp3] SPX beta=-1 3M: admissible=0.62 max2bp=563.21 max3bp=563.12
+[exp3] SPX beta=2 3M: admissible=0.62 max2bp=27.32 max3bp=32.18
+[exp3] SPX beta=3 3M: admissible=0.62 max2bp=125.11 max3bp=155.83
+[exp3] SPX beta=-2 6M: admissible=0.64 max2bp=356.33 max3bp=354.36
+[exp3] SPX beta=-1 6M: admissible=0.64 max2bp=459.86 max3bp=459.72
+[exp3] SPX beta=2 6M: admissible=0.64 max2bp=27.99 max3bp=32.87
+[exp3] SPX beta=3 6M: admissible=0.64 max2bp=132.46 max3bp=171.10
+[exp3] SPX beta=-2 1Y: admissible=0.67 max2bp=84.74 max3bp=67.40
+[exp3] SPX beta=-1 1Y: admissible=0.67 max2bp=70.69 max3bp=70.49
+[exp3] SPX beta=2 1Y: admissible=0.67 max2bp=7.20 max3bp=7.56
+[exp3] SPX beta=3 1Y: admissible=0.67 max2bp=36.84 max3bp=40.83
+[exp3] SPX beta=-2 2Y: admissible=0.70 max2bp=126.67 max3bp=129.82
+[exp3] SPX beta=-1 2Y: admissible=0.70 max2bp=48.36 max3bp=47.99
+[exp3] SPX beta=2 2Y: admissible=0.70 max2bp=9.93 max3bp=12.30
+[exp3] SPX beta=3 2Y: admissible=0.70 max2bp=64.69 max3bp=73.30
+[exp3] NKY beta=-2 3M: admissible=0.57 max2bp=361.87 max3bp=466.25
+[exp3] NKY beta=-1 3M: admissible=0.57 max2bp=475.16 max3bp=474.95
+[exp3] NKY beta=2 3M: admissible=0.57 max2bp=40.81 max3bp=49.68
+[exp3] NKY beta=3 3M: admissible=0.57 max2bp=166.60 max3bp=234.46
+[exp3] NKY beta=-2 6M: admissible=0.61 max2bp=580.33 max3bp=574.27
+[exp3] NKY beta=-1 6M: admissible=0.61 max2bp=430.92 max3bp=430.56
+[exp3] NKY beta=2 6M: admissible=0.61 max2bp=39.36 max3bp=53.12
+[exp3] NKY beta=3 6M: admissible=0.61 max2bp=180.01 max3bp=263.10
+[exp3] NKY beta=-2 1Y: admissible=0.64 max2bp=191.38 max3bp=178.09
+[exp3] NKY beta=-1 1Y: admissible=0.64 max2bp=117.32 max3bp=116.70
+[exp3] NKY beta=2 1Y: admissible=0.64 max2bp=12.81 max3bp=13.76
+[exp3] NKY beta=3 1Y: admissible=0.64 max2bp=69.51 max3bp=76.71
+[exp3] NKY beta=-2 2Y: admissible=0.68 max2bp=205.44 max3bp=223.37
+[exp3] NKY beta=-1 2Y: admissible=0.68 max2bp=90.31 max3bp=89.15
+[exp3] NKY beta=2 2Y: admissible=0.68 max2bp=16.52 max3bp=20.26
+[exp3] NKY beta=3 2Y: admissible=0.68 max2bp=115.82 max3bp=126.11
+index  beta maturity  admissible_fraction  mean_lambda3_minus_2cv  max_two_moment_abs_err_bp  max_three_moment_abs_err_bp
+  SPX    -2       3M             0.615694                1.157437                 274.899955                   306.141935
+  SPX    -1       3M             0.615694                1.157437                 563.209668                   563.116853
+  SPX     2       3M             0.615694                1.157437                  27.318423                    32.181647
+  SPX     3       3M             0.615694                1.157437                 125.111689                   155.830518
+  SPX    -2       6M             0.640562                1.369062                 356.333176                   354.357578
+  SPX    -1       6M             0.640562                1.369062                 459.857455                   459.720038
+  SPX     2       6M             0.640562                1.369062                  27.991740                    32.866659
+  SPX     3       6M             0.640562                1.369062                 132.464288                   171.098287
+  SPX    -2       1Y             0.668675                1.406283                  84.742565                    67.400032
+  SPX    -1       1Y             0.668675                1.406283                  70.693507                    70.489085
+  SPX     2       1Y             0.668675                1.406283                   7.204687                     7.562412
+  SPX     3       1Y             0.668675                1.406283                  36.837367                    40.832838
+  SPX    -2       2Y             0.698189                1.174778                 126.669402                   129.819628
+  SPX    -1       2Y             0.698189                1.174778                  48.362751                    47.991103
+  SPX     2       2Y             0.698189                1.174778                   9.933005                    12.301144
+  SPX     3       2Y             0.698189                1.174778                  64.690255                    73.301544
+  NKY    -2       3M             0.573441                1.484452                 361.871229                   466.249365
+  NKY    -1       3M             0.573441                1.484452                 475.156578                   474.945803
+  NKY     2       3M             0.573441                1.484452                  40.808742                    49.682204
+  NKY     3       3M             0.573441                1.484452                 166.599452                   234.456975
+  NKY    -2       6M             0.606426                1.794125                 580.333564                   574.268672
+  NKY    -1       6M             0.606426                1.794125                 430.923326                   430.556609
+  NKY     2       6M             0.606426                1.794125                  39.360146                    53.122635
+  NKY     3       6M             0.606426                1.794125                 180.009037                   263.099763
+  NKY    -2       1Y             0.640562                1.856878                 191.379495                   178.091111
+  NKY    -1       1Y             0.640562                1.856878                 117.315766                   116.695516
+  NKY     2       1Y             0.640562                1.856878                  12.809463                    13.762356
+  NKY     3       1Y             0.640562                1.856878                  69.513192                    76.709235
+  NKY    -2       2Y             0.682093                1.500191                 205.443045                   223.366592
+  NKY    -1       2Y             0.682093                1.500191                  90.313384                    89.146299
+  NKY     2       2Y             0.682093                1.500191                  16.521411                    20.256207
+  NKY     3       2Y             0.682093                1.500191                 115.820731                   126.111829

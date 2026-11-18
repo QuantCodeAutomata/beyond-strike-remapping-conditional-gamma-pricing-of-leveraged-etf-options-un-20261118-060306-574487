@@ -1,0 +1,66 @@
+[exp2] SPX beta=-2 3M: max|gamma_err|=274.90bp max|remap_err|=5112.22bp
+[exp2] SPX beta=-1 3M: max|gamma_err|=563.21bp max|remap_err|=7807.45bp
+[exp2] SPX beta=2 3M: max|gamma_err|=27.32bp max|remap_err|=173.11bp
+[exp2] SPX beta=3 3M: max|gamma_err|=125.11bp max|remap_err|=1225.79bp
+[exp2] SPX beta=-2 6M: max|gamma_err|=356.33bp max|remap_err|=3167.55bp
+[exp2] SPX beta=-1 6M: max|gamma_err|=459.86bp max|remap_err|=4823.06bp
+[exp2] SPX beta=2 6M: max|gamma_err|=27.99bp max|remap_err|=311.78bp
+[exp2] SPX beta=3 6M: max|gamma_err|=132.46bp max|remap_err|=1045.17bp
+[exp2] SPX beta=-2 1Y: max|gamma_err|=84.74bp max|remap_err|=2137.03bp
+[exp2] SPX beta=-1 1Y: max|gamma_err|=70.69bp max|remap_err|=2830.91bp
+[exp2] SPX beta=2 1Y: max|gamma_err|=7.20bp max|remap_err|=180.32bp
+[exp2] SPX beta=3 1Y: max|gamma_err|=36.84bp max|remap_err|=580.00bp
+[exp2] SPX beta=-2 2Y: max|gamma_err|=126.67bp max|remap_err|=1005.38bp
+[exp2] SPX beta=-1 2Y: max|gamma_err|=48.36bp max|remap_err|=1115.41bp
+[exp2] SPX beta=2 2Y: max|gamma_err|=9.93bp max|remap_err|=151.06bp
+[exp2] SPX beta=3 2Y: max|gamma_err|=64.69bp max|remap_err|=295.47bp
+[exp2] NKY beta=-2 3M: max|gamma_err|=361.87bp max|remap_err|=6253.73bp
+[exp2] NKY beta=-1 3M: max|gamma_err|=475.16bp max|remap_err|=8862.15bp
+[exp2] NKY beta=2 3M: max|gamma_err|=40.81bp max|remap_err|=428.45bp
+[exp2] NKY beta=3 3M: max|gamma_err|=166.60bp max|remap_err|=1940.71bp
+[exp2] NKY beta=-2 6M: max|gamma_err|=580.33bp max|remap_err|=4195.33bp
+[exp2] NKY beta=-1 6M: max|gamma_err|=430.92bp max|remap_err|=5798.21bp
+[exp2] NKY beta=2 6M: max|gamma_err|=39.36bp max|remap_err|=387.73bp
+[exp2] NKY beta=3 6M: max|gamma_err|=180.01bp max|remap_err|=1355.09bp
+[exp2] NKY beta=-2 1Y: max|gamma_err|=191.38bp max|remap_err|=2910.68bp
+[exp2] NKY beta=-1 1Y: max|gamma_err|=117.32bp max|remap_err|=3313.70bp
+[exp2] NKY beta=2 1Y: max|gamma_err|=12.81bp max|remap_err|=381.05bp
+[exp2] NKY beta=3 1Y: max|gamma_err|=69.51bp max|remap_err|=869.59bp
+[exp2] NKY beta=-2 2Y: max|gamma_err|=205.44bp max|remap_err|=1583.90bp
+[exp2] NKY beta=-1 2Y: max|gamma_err|=90.31bp max|remap_err|=1305.63bp
+[exp2] NKY beta=2 2Y: max|gamma_err|=16.52bp max|remap_err|=410.80bp
+[exp2] NKY beta=3 2Y: max|gamma_err|=115.82bp max|remap_err|=540.99bp
+index  beta maturity  max_gamma_abs_err  mean_gamma_abs_err  max_remap_abs_err  mean_remap_abs_err  gamma_beats_remap  gamma_coef
+  NKY    -2       1Y           0.019138            0.010525           0.291068            0.136601               True           3
+  NKY    -2       2Y           0.020544            0.009795           0.158390            0.069637               True           3
+  NKY    -2       3M           0.036187            0.018163           0.625373            0.360637               True           3
+  NKY    -2       6M           0.058033            0.032000           0.419533            0.227577               True           3
+  NKY    -1       1Y           0.011732            0.002733           0.331370            0.144498               True           1
+  NKY    -1       2Y           0.009031            0.002989           0.130563            0.059671               True           1
+  NKY    -1       3M           0.047516            0.006460           0.886215            0.396254               True           1
+  NKY    -1       6M           0.043092            0.009147           0.579821            0.254084               True           1
+  NKY     2       1Y           0.001281            0.000857           0.038105            0.011538               True           1
+  NKY     2       2Y           0.001652            0.001189           0.041080            0.012633               True           1
+  NKY     2       3M           0.004081            0.003005           0.042845            0.018358               True           1
+  NKY     2       6M           0.003936            0.002996           0.038773            0.014558               True           1
+  NKY     3       1Y           0.006951            0.003596           0.086959            0.020284               True           3
+  NKY     3       2Y           0.011582            0.006781           0.054099            0.013931               True           3
+  NKY     3       3M           0.016660            0.013226           0.194071            0.059517               True           3
+  NKY     3       6M           0.018001            0.014979           0.135509            0.039196               True           3
+  SPX    -2       1Y           0.008474            0.004576           0.213703            0.090140               True           3
+  SPX    -2       2Y           0.012667            0.006420           0.100538            0.037798               True           3
+  SPX    -2       3M           0.027490            0.010885           0.511222            0.265969               True           3
+  SPX    -2       6M           0.035633            0.018265           0.316755            0.155824               True           3
+  SPX    -1       1Y           0.007069            0.001169           0.283091            0.112789               True           1
+  SPX    -1       2Y           0.004836            0.001431           0.111541            0.040530               True           1
+  SPX    -1       3M           0.056321            0.005547           0.780745            0.326384               True           1
+  SPX    -1       6M           0.045986            0.006671           0.482306            0.200084               True           1
+  SPX     2       1Y           0.000720            0.000554           0.018032            0.006256               True           1
+  SPX     2       2Y           0.000993            0.000789           0.015106            0.004003               True           1
+  SPX     2       3M           0.002732            0.002037           0.017311            0.007050               True           1
+  SPX     2       6M           0.002799            0.001922           0.031178            0.013954               True           1
+  SPX     3       1Y           0.003684            0.002040           0.058000            0.014492               True           3
+  SPX     3       2Y           0.006469            0.004447           0.029547            0.006580               True           3
+  SPX     3       3M           0.012511            0.009175           0.122579            0.039922               True           3
+  SPX     3       6M           0.013246            0.010313           0.104517            0.034497               True           3
+[exp2] fraction of cases where conditional-Gamma max error < remapping max error: 1.000

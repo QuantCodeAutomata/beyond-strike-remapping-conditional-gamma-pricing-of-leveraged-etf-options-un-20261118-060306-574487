@@ -138,6 +138,12 @@ EXP4_TARGET_TENORS_MONTHS = {
 }  # paper Section 13.5.1: nearest listed expiries to 1M/3M/6M plus the stated long-dated expiry
 EXP4_STRIKE_MONEYNESS_BAND = (0.75, 1.30)  # underlying spot-moneyness band of strikes retained (not specified in the paper; limits the number of contracts queried from the options market data provider)
 
+EXP4_RISK_FREE_RATE = {
+    "2026-03-20": 0.040, "2026-06-22": 0.038, "2026-09-25": 0.036,
+}  # flat continuously-compounded USD risk-free rate, per annum, per market date (not specified in the paper; representative short-term US Treasury-bill levels used as a documented modelling input)
+EXP4_DIVIDEND_YIELD = {"QQQ": 0.006, "TQQQ": 0.0}  # flat continuous dividend yield, per annum (not specified in the paper; QQQ's approximate trailing dividend yield; TQQQ does not have a comparable regular dividend yield in this model)
+EXP4_AMERICAN_TREE_STEPS = 200  # CRR binomial-tree steps used for the American-to-European conversion (not specified in the paper; chosen for sub-basis-point tree convergence)
+
 # ---------------------------------------------------------------------------
 # Numerical/root-finding tolerances (not specified in the paper)
 # ---------------------------------------------------------------------------

@@ -23,6 +23,7 @@ from __future__ import annotations
 from dataclasses import dataclass
 
 import numpy as np
+from scipy.optimize import least_squares
 
 from src.config import MATURITY_YEARS, SVI_PARAMS
 
@@ -93,6 +94,31 @@ class LocalVolSurface:
         fallback = np.maximum(dw_dT, 1e-8)
         local_var = np.where((denom > 1e-6) & np.isfinite(local_var), local_var, fallback)
         return np.maximum(local_var, 1e-8)
+
+
+def fit_svi_slice(k: np.ndarray, total_var: np.ndarray, weights: np.ndarray | None = None) -> dict:
+    """Least-squares raw-SVI fit of one maturity slice (Gatheral, 2004) to
+    listed total-implied-variance observations ``total_var`` at log-moneyness
+    ``k``. Used in experiment 4 to calibrate the QQQ surface to listed market
+    quotes (paper Section 13.5.1), the same SVI parametrisation used for the
+    synthetic SPX/NKY surfaces in experiments 1-3 (``src.config.SVI_PARAMS``).
+    """
+    weights = np.ones_like(k) if weights is None else weights
+    a0 = float(np.min(total_var))
+    b0 = 0.1
+    rho0 = -0.3
+    m0 = 0.0
+    sigma0 = 0.1
+
+    def residuals(p: np.ndarray) -> np.ndarray:
+        params = {"a": p[0], "b": abs(p[1]), "rho": np.clip(p[2], -0.999, 0.999),
+                  "m": p[3], "sigma": max(abs(p[4]), 1e-4)}
+        return weights * (svi_total_variance(k, params) - total_var)
+
+    fit = least_squares(residuals, x0=[a0, b0, rho0, m0, sigma0], method="lm", max_nfev=5000)
+    p = fit.x
+    return {"a": float(p[0]), "b": float(abs(p[1])), "rho": float(np.clip(p[2], -0.999, 0.999)),
+            "m": float(p[3]), "sigma": float(max(abs(p[4]), 1e-4))}
 
 
 def build_surface(index_name: str) -> LocalVolSurface:

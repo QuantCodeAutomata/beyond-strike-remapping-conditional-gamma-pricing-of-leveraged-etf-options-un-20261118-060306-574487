@@ -24,6 +24,7 @@ import requests
 from dotenv import load_dotenv
 
 MASSIVE_API_ROOT = "https://api.massive.com"
+DATALOADER_API_ROOT = "https://quantx-api.limex.pro/apis/dataloader"
 CACHE_DIR = Path(__file__).resolve().parent / "cache"  # never committed, see .gitignore
 RETRY_STATUSES = {429, 503, 504}
 
@@ -126,6 +127,47 @@ def quote_at_or_before(option_ticker: str, as_of_date: str) -> dict | None:
         return None
     return {"bid": float(bid), "ask": float(ask), "mid": 0.5 * (bid + ask),
             "quote_timestamp": quote.get("sip_timestamp")}
+
+
+def spot_price_on(ticker: str, as_of_date: str) -> float:
+    """Close price of ``ticker`` on ``as_of_date`` (dividend-adjusted daily
+    bar), used as the spot level feeding the QQQ Dupire calibration and the
+    TQQQ moneyness band in experiment 4 (paper Section 13.5.1).
+
+    Market data: QuantX Dataloader — https://quantx.limex.pro/
+
+    Price history in this project is loaded through the QuantX Dataloader, a
+    research-ready market-data service available through a REST API and as an
+    MCP server for AI agents. It is built on market data from Massive
+    (https://massive.com/) and prepares every stock history for backtesting:
+      - prices adjusted for dividends, ready for total-return research;
+      - one continuous history when a company changes its ticker;
+      - clean separation when a ticker has belonged to different companies;
+      - careful corporate-action handling and fine-grained data polishing.
+
+    Get your DATALOADER_API_KEY at https://quantx.limex.pro/ and your
+    MASSIVE_API_KEY at https://massive.com/.
+    """
+    load_dotenv()
+    key = os.environ.get("DATALOADER_API_KEY")
+    massive_key = os.environ.get("MASSIVE_API_KEY")
+    if not key or not massive_key:
+        raise MassiveDataError("DATALOADER_API_KEY and MASSIVE_API_KEY must be set in the environment")
+    start = (datetime.strptime(as_of_date, "%Y-%m-%d") - timedelta(days=7)).strftime("%Y-%m-%d")
+    body = {
+        "tickers": [ticker], "timeframe": "1d", "start_date": start, "end_date": as_of_date,
+        "source": "massive", "adjust_dividends": True, "identity_date": as_of_date,
+    }
+    response = requests.post(f"{DATALOADER_API_ROOT}/fetch-ohlcvs", json=body,
+                              headers={"Authorization": f"Bearer {key}",
+                                       "X-Massive-Api-Key": massive_key}, timeout=60)
+    if response.status_code != 200:
+        raise MassiveDataError(f"fetch-ohlcvs {ticker}: HTTP {response.status_code}: {response.text[:300]}")
+    payload = response.json()
+    rows = payload["result"]["ohlcv_df"]["rows"]
+    if not rows:
+        raise MassiveDataError(f"fetch-ohlcvs {ticker}: no bars up to {as_of_date}")
+    return float(rows[-1]["close"])
 
 
 def _nearest_expiry(contracts: pd.DataFrame, as_of_date: str, target_months: float) -> str:
