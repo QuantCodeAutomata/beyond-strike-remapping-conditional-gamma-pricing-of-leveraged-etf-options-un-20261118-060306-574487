@@ -224,8 +224,7 @@ match against.
 * **Local-volatility surface (experiments 1, 2, 3, 5).** The paper calibrates
   Dupire local-volatility surfaces to SPX and NKY index option markets on
   22 June 2026 but does not specify the calibration method or
-  parametrisation (flagged as an open uncertainty in the experiment
-  specification). Because the Dataloader API serves only OHLCV bars and
+  parametrisation. Because the Dataloader API serves only OHLCV bars and
   Massive's listed-index-option coverage for NKY (a Japanese index) could not
   be confirmed, experiments 1, 2, 3 and 5 use a parametric Dupire local
   variance surface built in `src/dupire_surface.py` from a quadratic-in-log-

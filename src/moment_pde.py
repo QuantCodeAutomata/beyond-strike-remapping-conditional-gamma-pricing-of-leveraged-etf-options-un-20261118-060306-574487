@@ -14,8 +14,8 @@ assembled and factorised once per time step (paper implementation_notes,
 Section 8.2 Remark 8.2) and reused, via back-substitution, for every M_n; the
 source term n*a*M_{n-1} is evaluated using the freshly updated M_{n-1} of the
 same step (sequential IMEX treatment), since the methodology does not specify
-whether the source is frozen at the old or new time level (flagged
-uncertainty). The x-grid and time stepping reuse the same construction as the
+whether the source is frozen at the old or new time level. The x-grid and
+time stepping reuse the same construction as the
 2D joint-law solver (src.joint_law_pde), so both solves agree on (t,x).
 """
 from __future__ import annotations
@@ -81,8 +81,8 @@ def conditional_moments(result: MomentResult, density_cutoff_relative: float) ->
         mu_3(x)= r_3(x) - 3 r_1(x) r_2(x) + 2 r_1(x)^3   conditional 3rd central moment
 
     Nodes where M_0(T,x) falls below `density_cutoff_relative` times the peak
-    of M_0(T,x) are marked unresolved (paper flagged uncertainty: exact cutoff
-    not specified) and excluded from the `resolved` mask.
+    of M_0(T,x) are marked unresolved (the paper does not give the exact
+    cutoff value) and excluded from the `resolved` mask.
     """
     M0 = result.M[0]
     cutoff = density_cutoff_relative * M0.max()

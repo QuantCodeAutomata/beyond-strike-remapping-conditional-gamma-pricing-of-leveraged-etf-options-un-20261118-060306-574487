@@ -3,7 +3,7 @@
 Reproduces paper Section 13.5: QQQ is the underlying and TQQQ (beta=3,
 gamma=3) is the three-times leveraged product. Listed American-style QQQ and
 TQQQ option quotes on three market dates (Section 13.5.1) are converted to
-European-equivalent Black implied volatilities (paper flagged uncertainty on
+European-equivalent Black implied volatilities (the paper does not specify
 the exact conversion method; this repository uses the Cox-Ross-Rubinstein
 tree conversion of ``src.american_option``). A Dupire local-volatility
 surface is calibrated to the converted QQQ smile at each listed expiry, the

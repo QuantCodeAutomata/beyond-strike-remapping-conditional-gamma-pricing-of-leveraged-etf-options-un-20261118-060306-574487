@@ -18,7 +18,7 @@ which is consistent with "upwind... since I_t is monotone increasing"
 (implementation_notes) while avoiding any Python-level loop over the i grid.
 
 The exact finite-difference/time-stepping scheme and the boundary conditions
-are not specified in the paper (flagged uncertainties); both choices are
+are not specified in the paper; both choices are
 documented here and the grid-refinement study of experiment 1 checks that the
 scheme converges under Table 1's nested configurations.
 """

@@ -3,8 +3,8 @@ option quotes (paper Section 13.5.1: "listed American-style option quotes ...
 must be converted to European implied volatilities").
 
 The paper does not specify the conversion method beyond naming
-"Bjerksund-Stensland or tree-based early exercise premium" as examples
-(flagged uncertainty). This module uses a Cox-Ross-Rubinstein binomial tree
+"Bjerksund-Stensland or tree-based early exercise premium" as examples.
+This module uses a Cox-Ross-Rubinstein binomial tree
 (Cox, Ross & Rubinstein, "Option Pricing: A Simplified Approach", 1979): the
 flat volatility that reproduces the American market price in the tree is
 found by bisection/Brent root-finding, and that same volatility is then the
@@ -16,9 +16,8 @@ American price is matched by the tree; the European equivalent is read off
 the same volatility parameter under the (American-tree-consistent)
 Black-Scholes dynamics.
 
-Context7 was consulted for American option pricing (QuantLib wrappers); no
-lightweight dependency-free CRR tree is exposed by the installed libraries in
-a form usable without a full QuantLib build, so the standard CRR recursion is
+No lightweight dependency-free CRR tree is exposed by a maintained options
+library without a full QuantLib build, so the standard CRR recursion is
 implemented directly from Cox-Ross-Rubinstein (1979).
 """
 from __future__ import annotations

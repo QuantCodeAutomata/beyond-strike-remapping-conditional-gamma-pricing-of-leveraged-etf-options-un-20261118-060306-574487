@@ -38,8 +38,8 @@ SPOT_LEVEL = {"SPX": 5500.0, "NKY": 39500.0}  # index spot level on the valuatio
 # ---------------------------------------------------------------------------
 # The paper states that SPX and NKY local-volatility surfaces are calibrated to
 # the respective index option markets on 22 June 2026 (Section 13.1) but does
-# not give the calibration methodology or parametrisation (flagged
-# uncertainty). This repository builds each surface from a raw SVI
+# not give the calibration methodology or parametrisation. This repository
+# builds each surface from a raw SVI
 # (Gatheral (2004)) total implied variance smile per maturity, interpolated in
 # total variance across maturities, and converts it to Dupire local variance
 # with the closed-form Gatheral-Jacquier (2014) local-variance-from-SVI
@@ -63,7 +63,7 @@ SVI_PARAMS = {
         "1Y": {"a": 0.0340, "b": 0.205, "rho": -0.56, "m": -0.06, "sigma": 0.155},
         "2Y": {"a": 0.0680, "b": 0.230, "rho": -0.50, "m": -0.08, "sigma": 0.20},
     },
-}  # not specified in the paper (flagged uncertainty); representative SVI smiles, steeper for NKY than SPX
+}  # not specified in the paper; representative SVI smiles, steeper for NKY than SPX
 
 # ---------------------------------------------------------------------------
 # Table 1 (paper Section 13.2.1): nested grid configurations for the forward
@@ -90,15 +90,15 @@ GRID_CONFIGS_RUN = {
     "Fine": {"n_x": 750, "n_i": 375, "steps_per_year": 250, "n_sigma": 15.0},
 }
 
-# i-domain truncation (not specified in the paper, flagged uncertainty): the
+# i-domain truncation (not specified in the paper): the
 # upper bound of the integrated-variance grid is set as a multiple of the
 # maximum local variance on the surface times the maturity, generous enough
 # that the probability mass beyond it is negligible.
 I_DOMAIN_SAFETY_MULTIPLE = 6.0  # i_max = I_DOMAIN_SAFETY_MULTIPLE * a_max * T
 
 # Density cutoff below which M_0(T, x) is treated as numerically unresolved
-# and conditional-moment ratios are not formed (not specified in the paper,
-# flagged uncertainty; chosen relative to the peak density on each grid).
+# and conditional-moment ratios are not formed (not specified in the paper;
+# chosen relative to the peak density on each grid).
 DENSITY_CUTOFF_RELATIVE = 1e-6  # fraction of the maximum of M_0(T, x) on the grid
 VARIANCE_NEGLIGIBLE_RELATIVE = 1e-10  # v(x) treated as 0 below this fraction of mean(v) on the resolved set
 
@@ -106,7 +106,7 @@ VARIANCE_NEGLIGIBLE_RELATIVE = 1e-10  # v(x) treated as 0 below this fraction of
 # Monte Carlo benchmark (paper Section 13.2.2, equations (71)-(73))
 # ---------------------------------------------------------------------------
 
-MC_PATHS_PAPER = 2_000_000  # number of simulated paths (not specified in the paper, flagged uncertainty)
+MC_PATHS_PAPER = 2_000_000  # number of simulated paths (not specified in the paper)
 MC_PATHS_RUN = 200_000  # reduced path count used for the executed runs; use --full for MC_PATHS_PAPER
 MC_SEED = 20260622  # fixed seed for reproducibility (valuation date used as seed, arbitrary choice)
 MC_STEPS_PER_YEAR = 250  # same time discretisation as the PDE grids (paper Table 1)
@@ -114,7 +114,7 @@ MC_STEPS_PER_YEAR = 250  # same time discretisation as the PDE grids (paper Tabl
 # ---------------------------------------------------------------------------
 # 1D forward moment PDE system (paper Section 9.2, equation (55)) grid
 # ---------------------------------------------------------------------------
-# Not specified in the paper (flagged uncertainty): the 1D grid for M_0..M_3
+# Not specified in the paper: the 1D grid for M_0..M_3
 # uses the same n_x and n_sigma as the Baseline 2D configuration, since the x
 # direction plays the same diffusive role in both solves. A synthetic check
 # with a constant local-variance surface (whose exact conditional variance of

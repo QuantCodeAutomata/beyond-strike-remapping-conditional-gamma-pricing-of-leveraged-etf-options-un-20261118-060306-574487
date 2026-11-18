@@ -8,7 +8,7 @@ DIVIDEND_YIELD, SPOT_LEVEL): F_T^S = S_0 exp((r-q)T), D_T = exp(-rT). The LETF
 forward is built from a nominal initial level L_0 (src.config.LETF_INITIAL_LEVEL)
 compounded at the same risk-free rate, since the model's I_T (variance-drag)
 adjustment already captures the leverage-specific convexity correction and the
-paper gives no separate fund financing spread (flagged uncertainty).
+paper gives no separate fund financing spread.
 """
 from __future__ import annotations
 

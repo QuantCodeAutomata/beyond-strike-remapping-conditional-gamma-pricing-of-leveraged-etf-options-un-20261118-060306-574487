@@ -2,8 +2,8 @@
 
 The paper (Section 13.1) calibrates SPX and NKY Dupire local-volatility
 surfaces to the respective index option markets on 22 June 2026, but does not
-give the calibration methodology or parametrisation (flagged uncertainty,
-Section 13 evidence). This module builds each surface from a raw SVI
+give the calibration methodology or parametrisation. This module builds each
+surface from a raw SVI
 (Gatheral, "A parsimonious arbitrage-free implied volatility parameterization
 with application to the valuation of volatility derivatives", 2004) total
 implied variance smile per maturity, linearly interpolated/extrapolated in
@@ -13,10 +13,9 @@ Dupire local variance with the closed-form local-variance-from-total-variance
 formula (Gatheral & Jacquier, "Arbitrage-free SVI volatility surfaces", 2014,
 Eq. 2.10), evaluated by finite differences of the fitted surface in (k, T).
 
-Context7 was consulted for SVI/Dupire surface construction; no maintained
-Python library implements the SVI-to-Dupire local-variance map directly
-(py_vollib and QuantLib cover Black-Scholes/Black IV inversion only), so this
-closed-form transform is implemented from the paper's cited formula.
+No maintained Python library implements the SVI-to-Dupire local-variance map
+directly (py_vollib and QuantLib cover Black-Scholes/Black IV inversion
+only), so this closed-form transform is implemented from the cited formula.
 """
 from __future__ import annotations
 
