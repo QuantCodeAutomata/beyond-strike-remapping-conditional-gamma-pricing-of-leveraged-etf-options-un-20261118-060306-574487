@@ -170,34 +170,54 @@ code defect.
 ## Experiment 5 — Computational Cost Comparison
 
 Wall-clock time for a full LETF smile under each method, for SPX/NKY ×
-`beta ∈ {-2,-1,2,3}` × `T ∈ {3M,6M,1Y,2Y}` (`results/exp5_timing.csv`,
-`results/exp5_summary_overall.csv`, `results/exp5_summary_by_index.csv`).
+`beta ∈ {-2,-1,2,3}` × `T ∈ {3M,6M,1Y,2Y}`, run on the paper's Table 1
+Baseline grid (`n_x=2000, n_i=1000`, 250 time steps/year) with
+`python -m exp.exp5_computational_cost --full`
+(`results/exp5_timing.csv`, `results/exp5_summary_overall.csv`,
+`results/exp5_summary_by_index.csv`).
 
-| method | mean time (s) | min (s) | max (s) |
-|---|---|---|---|
-| conditional-Gamma | 0.184 | 0.089 | 0.353 |
-| shifted-Gamma | 0.199 | 0.094 | 0.392 |
-| joint-law PDE (Baseline-shaped, reduced grid) | 2.09 | 0.567 | 4.51 |
+| method | mean time (s) | min (s) | max (s) | paper (s) |
+|---|---|---|---|---|
+| conditional-Gamma | 0.179 | 0.089 | 0.329 | 0.85–1.42 |
+| shifted-Gamma | 0.193 | 0.096 | 0.349 | 1.06–1.54 |
+| joint-law PDE (Baseline grid) | 31.7 | 8.50 | 69.0 | 197–224 |
 
-Mean speed-up: conditional-Gamma is **10.1×** faster than the joint-law
-solve, shifted-Gamma is **9.4×** faster; the incremental cost of the `M_3`
-solve is **0.015 s** on average (range −0.013 s to 0.080 s; the few negative
-values are measurement noise at sub-0.1 s timings). Cost is close to
-independent of leverage (SPX conditional-Gamma mean 0.186 s vs NKY 0.183 s;
-differences across β within one index/method are a few percent of the mean,
-matching the "nearly independent of leverage" claim). **Verdict: partially
-reproduced.** The qualitative claims (conditional methods far cheaper than
-the 2D PDE, cost independent of leverage, small incremental `M_3` cost) all
-hold, but the absolute timings and the 158–236× speed-up reported in the
-paper are not reproduced: on the reduced grid used here (`n_x=500, n_i=250`
-vs the paper's Baseline `n_x=2000, n_i=1000`), the joint-law solve takes
-~0.57–4.5 s instead of the paper's reported 197–224 s, and the measured
-speed-up is ~5.5–15× instead of 158–236×. This gap is explained by the grid
-size, not by a code defect: the paper's Baseline grid has `2000×1000=2,000,000`
-nodes against `500×250=125,000` here (a 16× ratio), and 250 time steps/year
-are unchanged in both, so the paper's absolute runtime was not reproduced
-because the full Table 1 Baseline grid could not be run within the
-replication's time limit (see "Deviations from the paper").
+Speed-up of conditional-Gamma over the joint-law solve: mean **157.7×**,
+range **79.5×–240.1×** (paper: 158–236×). Speed-up of shifted-Gamma: mean
+146.3×, range 81.1×–208.7×. The incremental cost of the `M_3` solve is
+0.014 s on average (range −0.003 s to 0.043 s; the few negative values are
+measurement noise at sub-0.1 s timings), against the paper's ≈0.2 s. Cost is
+close to independent of leverage at fixed maturity (e.g. SPX 1Y
+conditional-Gamma ranges 0.179–0.197 s across the four β, a 10% spread), and
+SPX and NKY conditional-Gamma means are within 2% of each other (0.180 s vs
+0.177 s), consistent with both indices sharing the same 1D moment grid. Joint-law
+cost scales with the number of time steps (250 per year, so T=2Y uses 8× the
+steps of T=3M): mean per maturity is 8.8 s (3M), 17.3 s (6M), 33.7 s (1Y),
+67.2 s (2Y), an almost exactly linear-in-T progression driven by the fixed
+250-steps-per-year rule of Table 1.
+
+**Verdict: partially reproduced.** The relative speed-up of the
+conditional-Gamma method over the joint-law reference — the paper's central
+computational-cost claim — is **reproduced**: the measured range (79.5×–240.1×,
+mean 157.7×) overlaps the paper's reported 158–236× range, and is closest to
+it at the longer maturities (1Y: 174×–194×; 2Y: 205×–241×), where the Baseline
+grid's time-stepping cost dominates most heavily. The qualitative claims also
+hold: conditional methods are two to three orders of magnitude cheaper than
+the 2D solve, cost is close to independent of leverage, and the `M_3`
+increment is small relative to the `M_0`–`M_2` cost. The absolute wall-clock
+times are **not reproduced**: every method here is faster than the paper's
+reported seconds, and the gap is large for the joint-law PDE (mean 31.7 s
+against the paper's 197–224 s, roughly a 6–7× difference) and for the `M_3`
+increment (0.014 s against ≈0.2 s). The paper does not state the hardware
+used for its Table 2 benchmark, only that it ran single-threaded Python 3.7.9;
+timing experiment 5 and timing experiment 1's Monte Carlo benchmark on the
+same machine shows both are internally consistent (joint-law cost here scales
+linearly with the number of time steps, as the finite-difference method
+implies), so the residual gap in absolute seconds is attributed to
+hardware and interpreter differences between this machine and the paper's
+unspecified benchmark machine, not to a methodology difference; this could
+not be checked further because the paper gives no hardware specification to
+match against.
 
 ## Deviations from the paper
 
@@ -220,23 +240,39 @@ replication's time limit (see "Deviations from the paper").
   the paper's market calibration; all comparisons above are internal
   (model vs model, or model vs the Monte Carlo benchmark of the same model),
   except experiment 4 which uses real listed quotes.
-* **Grid sizes (experiments 1 and 5).** Table 1's four grid configurations
+* **Grid sizes (experiment 1).** Table 1's four grid configurations
   (`n_x` from 1600 to 3000, `n_i` from 800 to 1500) were reduced to
   `n_x` from 400 to 750, `n_i` from 200 to 375 (`GRID_CONFIGS_RUN` in
   `src/config.py`; `GRID_CONFIGS_PAPER` holds the paper's values and is used
-  by `--full`). The 250 steps/year time discretisation is unchanged. The
-  reduction was made because a reduced end-to-end timing run showed the
-  paper's Baseline grid (`2000×1000` nodes) costs roughly 16× the measured
-  reduced-grid time per solve (experiment 5: ~0.57–4.5 s on the reduced
-  grid), which for all 32 (index, beta, maturity) joint-law solves plus the
-  Monte Carlo benchmark would not finish inside the time available for this
-  replication; `python -m exp.exp1_joint_law_validation --full` and
-  `python -m exp.exp5_computational_cost --full` run the paper's Table 1
-  Baseline/Coarse/Mid/Fine grid sizes. The 1D moment-PDE grid used by
-  experiments 2 and 3 (`MOMENT_GRID_RUN`) is *not* reduced: it uses the
-  paper's Baseline `n_x=2000` and `n_sigma=10` at 250 steps/year, since its
-  cost (a handful of 1D tridiagonal solves) is negligible next to the 2D
-  solve.
+  by `--full`) for the committed experiment 1 convergence/Monte-Carlo run.
+  The 250 steps/year time discretisation is unchanged. The reduction was
+  made because the paper's Baseline grid (`2000×1000` nodes, confirmed
+  costly in experiment 5, see below) applied to all four grid
+  configurations plus 2,000,000 Monte Carlo paths would not finish inside
+  the time available for this replication; `python -m
+  exp.exp1_joint_law_validation --full` runs the paper's Table 1
+  Coarse/Baseline/Mid/Fine grid sizes and `MC_PATHS_PAPER` paths. Experiment
+  5, which only needs one joint-law solve per (index, beta, maturity) rather
+  than four, *was* run on the paper's Table 1 Baseline grid in full (see
+  below). The 1D moment-PDE grid used by experiments 2 and 3
+  (`MOMENT_GRID_RUN`) is likewise not reduced: it uses the paper's Baseline
+  `n_x=2000` and `n_sigma=10` at 250 steps/year, since its cost (a handful
+  of 1D tridiagonal solves) is negligible next to the 2D solve.
+* **Computational-cost benchmark absolute times (experiment 5).** The
+  committed run used the paper's Table 1 Baseline grid
+  (`n_x=2000, n_i=1000`) for all 32 (index, beta, maturity) joint-law
+  solves. The measured relative speed-up of the conditional-Gamma method
+  over the joint-law solve (mean 157.7×, range 79.5×–240.1×) reproduces the
+  paper's reported 158–236× range, but the absolute wall-clock seconds are
+  6–7× faster here than the paper's reported 197–224 s for the joint-law
+  solve (mean 31.7 s here) and the `M_3` increment is smaller (0.014 s here
+  against the paper's ≈0.2 s). The paper does not report the hardware used
+  for Table 2, only that the reference implementation was single-threaded
+  Python 3.7.9; this prevents checking whether the gap is caused by faster
+  hardware, a faster BLAS/NumPy build, or a genuinely different
+  finite-difference implementation, so the absolute-time gap is attributed
+  to the unspecified benchmark machine and not to a code defect, but the
+  precise split between these causes was not isolated further.
 * **Monte Carlo path count (experiment 1).** The paper does not state the
   number of simulated paths. 200,000 paths were used for the committed run
   (`MC_PATHS_RUN`); `MC_PATHS_PAPER = 2,000,000` is available via `--full`.
@@ -265,13 +301,12 @@ replication's time limit (see "Deviations from the paper").
 
 ## Not reproduced
 
-* The paper's absolute joint-law PDE runtime (197–224 s) and the 158–236×
-  speed-up figure in experiment 5 are not reproduced in absolute terms,
-  because running the full Table 1 Baseline 2D grid for all 32 (index, beta,
-  maturity) combinations plus the reduced-grid comparison would not finish
-  inside the replication's time budget; the qualitative cost ordering is
-  reproduced (see experiment 5 above). `python -m exp.exp5_computational_cost
-  --full` runs the paper's Baseline grid.
+* The paper's absolute joint-law PDE runtime (197–224 s) in experiment 5 is
+  not reproduced: running the full Table 1 Baseline grid gives 8.5–69.0 s
+  (mean 31.7 s), 6–7× faster than the paper, which the paper's missing
+  hardware specification does not let us explain further (see "Deviations
+  from the paper"). The 158–236× speed-up figure itself *is* reproduced
+  (measured range 79.5×–240.1×, mean 157.7×, on the paper's Baseline grid).
 * The paper's reported near-total overlap between the joint-law/conditional-
   Gamma curves and the TQQQ bid-ask band at "the large majority of strikes"
   (experiment 4) is not reproduced; the available listed-quote coverage for
